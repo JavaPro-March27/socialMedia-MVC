@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -18,6 +19,15 @@ public class PostService {
 
  public List<Post> findAllPosts(){
      return repository.getAllPosts();
+ }
+
+ public Optional<Post> findById(int id){
+
+     return repository.getPostbyId(id);
+ }
+
+ public void updatePost(Post updatedPost){
+     repository.update(updatedPost);
  }
 
 }

@@ -11,7 +11,7 @@
 
 
     <div class="row">
-        <form th:object="${newPost}" method="post">
+        <form th:object="${postNeedToUpdate}" method="post">
 <!--            <input type="text" placeholder="Title" th:field="${newPost.title}">-->
 <!--            <input type="text" placeholder="Body" th:field="${newPost.body}">-->
 <!--            <input type="text" placeholder="Discription" th:field="${newPost.discription}">-->
@@ -40,7 +40,7 @@
                     <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:errorClass="text-danger"></p>
                 </div>
             </div>
-            <input type="submit" value="Create Post" class="btn btn-primary">
+            <input type="submit" value="Update Post" class="btn btn-primary">
 
         </form>
 

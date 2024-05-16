@@ -8,10 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/posts")
@@ -33,7 +32,7 @@ public class PostController {
     }
 
     @PostMapping("/create")
-    public String createPost(@ModelAttribute("newPost") @Valid Post newPost, BindingResult result, Errors errors){
+    public String createPost(@ModelAttribute("newPost") @Valid Post newPost, Errors errors){
 
         if(errors.hasErrors()){
             return "posts/createPostPage";
@@ -41,6 +40,38 @@ public class PostController {
          postService.addPost(newPost);
         return "redirect:/posts/list";
     }
+
+    @GetMapping("/update/{id}")
+    public String updatePostPage(@PathVariable("id") Integer id,  Model model){
+
+        Optional<Post> optionalPost = postService.findById(id);
+        Post updatedpost=null;
+        if(optionalPost.isPresent()) {
+            updatedpost = optionalPost.get();
+        }else {
+            return "redirect:/posts/list";
+        }
+
+        model.addAttribute("postNeedToUpdate", updatedpost);
+        System.out.println(updatedpost);
+        return "posts/updatePostPage";
+    }
+
+
+    @PostMapping("/update/{id}")
+    public String updatePost(@PathVariable("id") Integer id, @ModelAttribute("postNeedToUpdate") @Valid Post updatedPost, Errors errors){
+
+        if(errors.hasErrors()){
+            System.out.println(errors.getAllErrors());
+            return "posts/updatePostPage";
+        }
+        System.out.println(updatedPost);
+        postService.updatePost(updatedPost);
+
+        return "redirect:/posts/list";
+    }
+
+
 
 
 }
