@@ -1,12 +1,12 @@
 package com.binary.socialmediaapplication.controllers;
 
 import com.binary.socialmediaapplication.models.Post;
+import com.binary.socialmediaapplication.services.CommentService;
 import com.binary.socialmediaapplication.services.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +21,7 @@ public class PostController {
 
     @GetMapping({"", "/list", "/postslist"})
     public String postPage(Model model){
+
         model.addAttribute("posts", postService.findAllPosts());
       return "posts/postIndex";
     }

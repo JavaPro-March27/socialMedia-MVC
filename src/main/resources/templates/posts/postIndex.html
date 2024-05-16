@@ -20,10 +20,23 @@
                 <h5 class="card-title" th:text="${post.title}"></h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${post.body}"></h6>
                 <p class="card-text" th:text="${post.description}"></p>
-
                 <a th:href="@{'update/' + ${post.id}}" ><button class="btn btn-secondary">Update</button></a>
 
-                <a th:href="@{'delete/' + ${post.id}}" methods="delete" ><button class="btn btn-danger">Delete</button></a>
+                <a th:href="@{'delete/' + ${post.id}}" ><button class="btn btn-danger">Delete</button></a>
+
+                <a th:href="@{${post.id}+'/addcomment'}"  ><button class="btn btn-success">Add comment</button></a>
+
+                <div th:each="comment:${post.comments}" class="card-body">
+
+                     <blockquote class="blockquote mb-0">
+
+                         <p th:text="${comment.commentMessage}"></p>
+
+                         <footer class="blockquote-footer" th:text="${comment.authorName}"></footer>
+
+                     </blockquote>
+
+                 </div>
 
 
             </div>
