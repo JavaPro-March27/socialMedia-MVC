@@ -30,4 +30,8 @@ public class PostService {
      repository.update(updatedPost);
  }
 
+ public void deletePostById(Integer id){
+       repository.removePostbyId(id);
+ }
+
 }

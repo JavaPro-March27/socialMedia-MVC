@@ -20,7 +20,12 @@
                 <h5 class="card-title" th:text="${post.title}"></h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${post.body}"></h6>
                 <p class="card-text" th:text="${post.description}"></p>
-                <a th:href="@{'update/' + ${post.id}}" ><button class="btn btn-secondary">update</button></a>
+
+                <a th:href="@{'update/' + ${post.id}}" ><button class="btn btn-secondary">Update</button></a>
+
+                <a th:href="@{'delete/' + ${post.id}}" methods="delete" ><button class="btn btn-danger">Delete</button></a>
+
+
             </div>
 
         </div>

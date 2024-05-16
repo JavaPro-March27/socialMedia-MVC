@@ -60,4 +60,15 @@ public class PostRepository {
        }
 
     }
+
+
+    public void removePostbyId(Integer id){
+
+        for(int i =0; i <posts.size(); i++){
+            if(posts.get(i).getId() == id){
+                  posts.remove(i);
+                  break;
+            }
+        }
+    }
 }

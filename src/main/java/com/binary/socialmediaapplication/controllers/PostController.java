@@ -71,7 +71,19 @@ public class PostController {
         return "redirect:/posts/list";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deletePostPage(@PathVariable("id") Integer id, Model model){
 
+        return "posts/deletePostPage";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deletePost(@PathVariable("id") Integer id){
+
+       postService.deletePostById(id);
+
+       return "redirect:/posts/list";
+    }
 
 
 }
